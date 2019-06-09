@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { IonIcon, IonTabs, IonTab, IonTabBar, IonTabButton, IonLabel } from '@ionic/react';
+import React, { Component } from "react";
+import { IonIcon, IonTabs, IonTab, IonTabBar, IonTabButton, IonLabel } from "@ionic/react";
 
 export default class Tabs extends Component {
   render() {
@@ -13,19 +13,19 @@ export default class Tabs extends Component {
         <IonTabBar slot="bottom">
           <IonTabButton tab="schedule">
             <IonLabel>Schedule</IonLabel>
-            <IonIcon name="schedule"></IonIcon>
+            <IonIcon name="schedule" />
           </IonTabButton>
           <IonTabButton tab="speakers">
             <IonLabel>Speakers</IonLabel>
-            <IonIcon name="speakers"></IonIcon>
+            <IonIcon name="speakers" />
           </IonTabButton>
           <IonTabButton tab="map">
             <IonLabel>Map</IonLabel>
-            <IonIcon name="map"></IonIcon>
+            <IonIcon name="map" />
           </IonTabButton>
           <IonTabButton tab="about">
             <IonLabel>About</IonLabel>
-            <IonIcon name="about"></IonIcon>
+            <IonIcon name="about" />
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

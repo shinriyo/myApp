@@ -1,14 +1,14 @@
-import { IonIcon, IonLabel, IonPage, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from '@ionic/react';
-import React from 'react';
-import { connect } from 'react-redux';
-import { Redirect, Route } from 'react-router';
-import { actions, RootState } from '../store';
-import About from './About';
-import MapView from './Map';
-import SchedulePage from './SchedulePage';
-import SessionDetail from './SessionDetail';
-import SpeakerDetail from './SpeakerDetail';
-import SpeakerList from './SpeakerList';
+import { IonIcon, IonLabel, IonPage, IonRouterOutlet, IonTabBar, IonTabButton, IonTabs } from "@ionic/react";
+import React from "react";
+import { connect } from "react-redux";
+import { Redirect, Route } from "react-router";
+import { actions, RootState } from "../store";
+import About from "./About";
+import MapView from "./Map";
+import SchedulePage from "./SchedulePage";
+import SessionDetail from "./SessionDetail";
+import SpeakerDetail from "./SpeakerDetail";
+import SpeakerList from "./SpeakerList";
 
 type AppStackProps = typeof mapDispatchToProps;
 class AppStack extends React.Component<AppStackProps> {
@@ -70,7 +70,7 @@ const mapStateToProps = (state: RootState) => ({});
 const mapDispatchToProps = {
   updateLocations: () => actions.locations.updateLocations(),
   updateSessions: () => actions.sessions.updateSessions(),
-  updateSpeakers: () => actions.speakers.updateSpeakers()
+  updateSpeakers: () => actions.speakers.updateSpeakers(),
 };
 
 export default connect(

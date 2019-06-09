@@ -1,17 +1,31 @@
-import React, { Component } from 'react';
-import { IonHeader, IonToolbar, IonButtons, IonButton, IonTitle, IonContent, IonList, IonItem, IonLabel, IonInput, IonRow, IonCol, IonMenuButton } from '@ionic/react';
-import './Login.css';
+import React, { Component } from "react";
+import {
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonButton,
+  IonTitle,
+  IonContent,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonInput,
+  IonRow,
+  IonCol,
+  IonMenuButton,
+} from "@ionic/react";
+import "./Login.css";
 
 type State = {
-  username: string | null
-}
+  username: string | null;
+};
 
 export default class Login extends Component<{}, State> {
   constructor(props: {}) {
     super(props);
     this.state = {
-      username: null
-    }
+      username: null,
+    };
   }
 
   updateUserName(e: CustomEvent) {}
@@ -24,7 +38,7 @@ export default class Login extends Component<{}, State> {
         <IonHeader>
           <IonToolbar>
             <IonButtons slot="start">
-              <IonMenuButton></IonMenuButton>
+              <IonMenuButton />
             </IonButtons>
             <IonTitle>Login</IonTitle>
           </IonToolbar>
@@ -32,7 +46,7 @@ export default class Login extends Component<{}, State> {
 
         <IonContent>
           <div className="logo">
-            <img src="assets/img/appicon.svg" alt="Ionic logo"/>
+            <img src="assets/img/appicon.svg" alt="Ionic logo" />
           </div>
           <form noValidate>
             <IonList no-lines>
@@ -44,12 +58,12 @@ export default class Login extends Component<{}, State> {
                   type="text"
                   autocapitalize="off"
                   value={this.state.username}
-                  required>
-                </IonInput>
+                  required
+                />
               </IonItem>
               <IonItem>
                 <IonLabel color="primary">Password</IonLabel>
-                <IonInput name="password" type="password" required></IonInput>
+                <IonInput name="password" type="password" required />
               </IonItem>
             </IonList>
 

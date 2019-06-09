@@ -1,8 +1,8 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { RootState, selectors } from '../store';
-import Map from '../components/Map';
-import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent } from '@ionic/react';
+import React from "react";
+import { connect } from "react-redux";
+import { RootState, selectors } from "../store";
+import Map from "../components/Map";
+import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent } from "@ionic/react";
 
 type Props = ReturnType<typeof mapStateToProps>;
 
@@ -11,7 +11,7 @@ const MapPage: React.SFC<Props> = ({ locations, mapCenter }) => (
     <IonHeader>
       <IonToolbar>
         <IonButtons slot="start">
-          <IonMenuButton></IonMenuButton>
+          <IonMenuButton />
         </IonButtons>
         <IonTitle>Map</IonTitle>
       </IonToolbar>
@@ -25,9 +25,7 @@ const MapPage: React.SFC<Props> = ({ locations, mapCenter }) => (
 
 const mapStateToProps = (state: RootState) => ({
   locations: state.locations.locations,
-  mapCenter: selectors.locations.mapCenter(state.locations)
+  mapCenter: selectors.locations.mapCenter(state.locations),
 });
 
-export default connect(
-  mapStateToProps
-)(MapPage);
+export default connect(mapStateToProps)(MapPage);

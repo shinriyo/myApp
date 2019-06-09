@@ -1,20 +1,32 @@
-import React, { Component } from 'react';
-import { IonHeader, IonToolbar, IonButtons, IonMenuButton, IonTitle, IonContent, IonList, IonItem, IonLabel, IonInput, IonButton } from '@ionic/react';
+import React, { Component } from "react";
+import {
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonMenuButton,
+  IonTitle,
+  IonContent,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonInput,
+  IonButton,
+} from "@ionic/react";
 
 type State = {
-  username: string | null,
-  password: string | null
-}
+  username: string | null;
+  password: string | null;
+};
 
-export default class Signup extends Component<{},State> {
-  signupFormRef: React.Ref<HTMLFormElement>
+export default class Signup extends Component<{}, State> {
+  signupFormRef: React.Ref<HTMLFormElement>;
 
   constructor(props: {}) {
     super(props);
     this.state = {
       username: null,
-      password: null
-    }
+      password: null,
+    };
     this.signupFormRef = React.createRef();
   }
 
@@ -25,31 +37,31 @@ export default class Signup extends Component<{},State> {
         <IonHeader>
           <IonToolbar>
             <IonButtons slot="start">
-              <IonMenuButton></IonMenuButton>
+              <IonMenuButton />
             </IonButtons>
             <IonTitle>Signup</IonTitle>
           </IonToolbar>
-        </IonHeader>,
-
+        </IonHeader>
+        ,
         <IonContent class="page-user">
           <div className="logo">
-            <img src="/assets/img/appicon.svg" alt="Ionic Logo"/>
+            <img src="/assets/img/appicon.svg" alt="Ionic Logo" />
           </div>
           <form ref={this.signupFormRef}>
             <IonList no-lines>
               <IonItem>
                 <IonLabel color="primary">Username</IonLabel>
-                <IonInput value={this.state.username} name="username" type="text" required>
-                </IonInput>
+                <IonInput value={this.state.username} name="username" type="text" required />
               </IonItem>
               <IonItem>
                 <IonLabel color="primary">Password</IonLabel>
-                <IonInput value={this.state.password} name="password" type="password" required>
-                </IonInput>
+                <IonInput value={this.state.password} name="password" type="password" required />
               </IonItem>
             </IonList>
             <div>
-              <IonButton onClick={() => this.onSignup()} type="submit">Create</IonButton>
+              <IonButton onClick={() => this.onSignup()} type="submit">
+                Create
+              </IonButton>
             </div>
           </form>
         </IonContent>

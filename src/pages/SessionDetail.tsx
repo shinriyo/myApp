@@ -1,14 +1,15 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { RouteComponentProps } from 'react-router';
-import { RootState } from '../store';
-import formatTime from '../utils/formatTime';
-import { IonHeader, IonToolbar, IonButtons, IonBackButton, IonContent, IonTitle } from '@ionic/react';
-import './SessionDetail.css';
+import React from "react";
+import { connect } from "react-redux";
+import { RouteComponentProps } from "react-router";
+import { RootState } from "../store";
+import formatTime from "../utils/formatTime";
+import { IonHeader, IonToolbar, IonButtons, IonBackButton, IonContent, IonTitle } from "@ionic/react";
+import "./SessionDetail.css";
 
-type Props = RouteComponentProps<{ id: string, tab: string }> & ReturnType<typeof mapStateToProps> & {
-  goBack: () => void
-};
+type Props = RouteComponentProps<{ id: string; tab: string }> &
+  ReturnType<typeof mapStateToProps> & {
+    goBack: () => void;
+  };
 
 const SessionDetail: React.SFC<Props> = ({ sessions, speakers, match, goBack }) => {
   const session = sessions.find(s => s.id === parseInt(match.params.id, 10));
@@ -32,9 +33,7 @@ const SessionDetail: React.SFC<Props> = ({ sessions, speakers, match, goBack }) 
         <div>
           <h1>{session.name}</h1>
           {sessionSpeakers.map(speaker => (
-            <h4 key={speaker.name}>
-              {speaker.name}
-            </h4>
+            <h4 key={speaker.name}>{speaker.name}</h4>
           ))}
           <p>
             {formatTime(session.dateTimeStart, "h:MM a")} &mdash;&nbsp;
@@ -46,13 +45,11 @@ const SessionDetail: React.SFC<Props> = ({ sessions, speakers, match, goBack }) 
       </IonContent>
     </>
   );
-}
+};
 
 const mapStateToProps = (state: RootState) => ({
   sessions: state.sessions.sessions,
-  speakers: state.speakers.speakers
+  speakers: state.speakers.speakers,
 });
 
-export default connect(
-  mapStateToProps
-)(SessionDetail)
+export default connect(mapStateToProps)(SessionDetail);
