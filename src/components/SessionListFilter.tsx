@@ -1,46 +1,59 @@
-import React, { Component } from 'react';
-import { IonHeader, IonButton, IonButtons, IonToolbar, IonTitle, IonContent, IonList, IonListHeader, IonItem, IonLabel, IonToggle, IonPage } from '@ionic/react';
+import React, { Component } from "react";
+import {
+  IonHeader,
+  IonButton,
+  IonButtons,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonList,
+  IonListHeader,
+  IonItem,
+  IonLabel,
+  IonToggle,
+  IonPage,
+} from "@ionic/react";
 
 type Props = {
   filteredTracks: string[];
   allTracks: string[];
   dismissModal: () => void;
   updateTrackFilters: (trackList: string[]) => void;
-}
+};
 
 type State = {
   trackFilters: string[];
-}
+};
 
 export default class SessionListFilter extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
     this.state = {
-      trackFilters: props.filteredTracks
-    }
+      trackFilters: props.filteredTracks,
+    };
   }
 
   toggleTrackFilter = (e: CustomEvent) => {
-    this.setState((prevState) => {
-      const trackFilters = (e.detail.checked) ?
-        prevState.trackFilters.concat(e.detail.value) :
-        prevState.trackFilters.filter(track => track !== e.detail.value);
+    this.setState(prevState => {
+      const trackFilters = e.detail.checked
+        ? prevState.trackFilters.concat(e.detail.value)
+        : prevState.trackFilters.filter(track => track !== e.detail.value);
       return {
-        trackFilters
-      }
+        trackFilters,
+      };
     });
-  }
+  };
 
   resetFilters = () => {
     this.props.updateTrackFilters([]);
     this.props.dismissModal();
-  }
+  };
 
   applyFilters = () => {
     this.props.updateTrackFilters(this.state.trackFilters);
     this.props.dismissModal();
-  }
+  };
 
   render() {
     return (
@@ -50,11 +63,11 @@ export default class SessionListFilter extends Component<Props, State> {
             <IonButtons slot="start">
               <IonButton onClick={this.props.dismissModal}>Cancel</IonButton>
             </IonButtons>
-            <IonTitle>
-              Filter Sessions
-            </IonTitle>
+            <IonTitle>Filter Sessions</IonTitle>
             <IonButtons slot="end">
-              <IonButton onClick={this.applyFilters} strong>Done</IonButton>
+              <IonButton onClick={this.applyFilters} strong>
+                Done
+              </IonButton>
             </IonButtons>
           </IonToolbar>
         </IonHeader>
@@ -62,16 +75,16 @@ export default class SessionListFilter extends Component<Props, State> {
         <IonContent class="outer-content">
           <IonList>
             <IonListHeader>Tracks</IonListHeader>
-            { this.props.allTracks.map((track) => (
+            {this.props.allTracks.map(track => (
               <IonItem key={track}>
-                <span slot="start" className="dot"></span>
+                <span slot="start" className="dot" />
                 <IonLabel>{track}</IonLabel>
                 <IonToggle
                   onIonChange={this.toggleTrackFilter}
                   checked={this.state.trackFilters.indexOf(track) !== -1}
                   color="success"
                   value={track}
-                ></IonToggle>
+                />
               </IonItem>
             ))}
           </IonList>

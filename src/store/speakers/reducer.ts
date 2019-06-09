@@ -1,10 +1,10 @@
-import * as speakers from './actions';
-import { ActionType, getType } from 'typesafe-actions';
+import * as speakers from "./actions";
+import { ActionType, getType } from "typesafe-actions";
 import { SpeakerState } from "./types";
 
 const defaultState: SpeakerState = {
-  speakers: []
-}
+  speakers: [],
+};
 
 export type SpeakerAction = ActionType<typeof speakers>;
 
@@ -13,10 +13,9 @@ export default (state = defaultState, action: SpeakerAction): SpeakerState => {
     case getType(speakers.fetchSpeakers.success):
       return {
         ...state,
-        speakers: action.payload
-      }
+        speakers: action.payload,
+      };
     default:
       return state;
   }
 };
-
