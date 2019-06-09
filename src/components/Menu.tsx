@@ -20,6 +20,7 @@ const routes = {
   appPages: [
     { title: "Schedule", path: "/", icon: "calendar" },
     { title: "Speakers", path: "/speakers", icon: "contacts" },
+    { title: "Profile", path: "/profile", icon: "contacts" },
     // { title: "Map", path: "/map", icon: "map" },
     { title: "About", path: "/about", icon: "information-circle" },
   ],
