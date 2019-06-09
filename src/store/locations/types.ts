@@ -6,6 +6,6 @@ export interface Location {
 }
 
 export interface LocationState {
-  mapCenterId: number
-  locations: Location[]
+  mapCenterId: number;
+  locations: Location[];
 }

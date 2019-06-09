@@ -1,12 +1,10 @@
-import { parse as parseDate } from 'date-fns';
-import { SessionState, Session } from './types';
+import { parse as parseDate } from "date-fns";
+import { SessionState, Session } from "./types";
 
 export function conferenceStart(state: SessionState) {
   const firstSession = state.sessions
     .concat()
-    .sort((a, b) => (
-      parseDate(a.dateTimeStart).valueOf() - parseDate(b.dateTimeStart).valueOf()
-    ))[0];
+    .sort((a, b) => parseDate(a.dateTimeStart).valueOf() - parseDate(b.dateTimeStart).valueOf())[0];
   return firstSession ? firstSession.dateTimeStart : null;
 }
 
@@ -21,9 +19,7 @@ export function allFiltered(state: SessionState) {
   let searchSessions = searchText(state.searchText);
   let searchTracks = filterByTrack(state.trackFilters);
 
-  return state.sessions
-    .filter(searchSessions)
-    .filter(searchTracks);
+  return state.sessions.filter(searchSessions).filter(searchTracks);
 }
 
 export function favoritesFiltered(state: SessionState) {
@@ -52,9 +48,6 @@ function filterByTrack(trackFilters: string[]) {
   if (trackFilters.length === 0) {
     return () => true;
   }
-  return (session: Session) => (
-    session.tracks.some(sessionTrackName => (
-      trackFilters.some(trackName => trackName === sessionTrackName)
-    ))
-  );
+  return (session: Session) =>
+    session.tracks.some(sessionTrackName => trackFilters.some(trackName => trackName === sessionTrackName));
 }

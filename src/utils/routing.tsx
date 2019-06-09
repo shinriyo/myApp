@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { RouteComponentProps } from 'react-router';
-import Tutorial from '../pages/Tutorial';
-import { connect } from 'react-redux';
-import { RootState } from '../store';
+import React, { Component } from "react";
+import { Route, Redirect } from "react-router-dom";
+import { RouteComponentProps } from "react-router";
+import Tutorial from "../pages/Tutorial";
+import { connect } from "react-redux";
+import { RootState } from "../store";
 
 type Props = ReturnType<typeof mapStateToProps> & {
   component: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>;
   path?: string | string[];
-}
+};
 
 class PRoute extends Component<Props> {
   render() {
@@ -18,12 +18,14 @@ class PRoute extends Component<Props> {
         return React.createElement(Component, props);
       }
       return (
-        <Redirect to={{
-          pathname: '/login',
-          state: { from: props.location }
-        }}/>
+        <Redirect
+          to={{
+            pathname: "/login",
+            state: { from: props.location },
+          }}
+        />
       );
-    }
+    };
     return <Route render={routeRender.bind(this)} />;
   }
 }
@@ -32,9 +34,9 @@ class RTRoute extends Component<Props> {
   render() {
     return (
       <>
-        { !this.props.user.hasSeenTutorial ? <Tutorial /> : null }
-        <div style={!this.props.user.hasSeenTutorial ? { "display": "none"} : {}}>
-          <Route {...this.props}/>
+        {!this.props.user.hasSeenTutorial ? <Tutorial /> : null}
+        <div style={!this.props.user.hasSeenTutorial ? { display: "none" } : {}}>
+          <Route {...this.props} />
         </div>
       </>
     );
@@ -42,7 +44,7 @@ class RTRoute extends Component<Props> {
 }
 
 const mapStateToProps = (state: RootState) => ({
-  user: state.user
+  user: state.user,
 });
 
 export const PrivateRoute = connect(mapStateToProps)(PRoute);
