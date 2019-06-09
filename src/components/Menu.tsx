@@ -23,17 +23,18 @@ const routes = {
     { title: "Profile", path: "/profile", icon: "contacts" },
     // { title: "Map", path: "/map", icon: "map" },
     { title: "About", path: "/about", icon: "information-circle" },
-  ],
-  loggedInPages: [
-    { title: "Account", path: "/account", icon: "person" },
-    { title: "Support", path: "/support", icon: "help" },
     { title: "Logout", path: "/logout", icon: "log-out" },
   ],
-  loggedOutPages: [
-    { title: "Login", path: "/login", icon: "log-in" },
-    { title: "Support", path: "/support", icon: "help" },
-    { title: "Signup", path: "/signup", icon: "person-add" },
-  ],
+  // loggedInPages: [
+  //   { title: "Account", path: "/account", icon: "person" },
+  //   { title: "Support", path: "/support", icon: "help" },
+  //   { title: "Logout", path: "/logout", icon: "log-out" },
+  // ],
+  // loggedOutPages: [
+  //   { title: "Login", path: "/login", icon: "log-in" },
+  //   { title: "Support", path: "/support", icon: "help" },
+  //   { title: "Signup", path: "/signup", icon: "person-add" },
+  // ],
 };
 
 type Props = RouteComponentProps<{}> & ReturnType<typeof mapStateToProps>;
@@ -59,13 +60,14 @@ const Menu: React.SFC<Props> = ({ isAuthenticated, history }) => {
       </IonHeader>
       <IonContent class="outer-content">
         <IonList>
-          <IonListHeader>Navigate</IonListHeader>
-          {renderlistItems(routes.appPages)}
+          {/* <IonListHeader>Navigate</IonListHeader> */}
+          {/* {renderlistItems(routes.appPages)} */}
+          {isAuthenticated ? renderlistItems(routes.appPages) : renderlistItems(routes.appPages)}
         </IonList>
-        <IonList>
+        {/* <IonList>
           <IonListHeader>Account</IonListHeader>
           {isAuthenticated ? renderlistItems(routes.loggedOutPages) : renderlistItems(routes.loggedInPages)}
-        </IonList>
+        </IonList> */}
         {/* <IonList>
           <IonListHeader>Tutorial</IonListHeader>
           <IonItem onClick={() => {}}>
