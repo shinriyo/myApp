@@ -20,7 +20,7 @@ const routes = {
   appPages: [
     { title: "Schedule", path: "/", icon: "calendar" },
     { title: "Speakers", path: "/speakers", icon: "contacts" },
-    { title: "Map", path: "/map", icon: "map" },
+    // { title: "Map", path: "/map", icon: "map" },
     { title: "About", path: "/about", icon: "information-circle" },
   ],
   loggedInPages: [
@@ -65,13 +65,13 @@ const Menu: React.SFC<Props> = ({ isAuthenticated, history }) => {
           <IonListHeader>Account</IonListHeader>
           {isAuthenticated ? renderlistItems(routes.loggedOutPages) : renderlistItems(routes.loggedInPages)}
         </IonList>
-        <IonList>
+        {/* <IonList>
           <IonListHeader>Tutorial</IonListHeader>
           <IonItem onClick={() => {}}>
             <IonIcon slot="start" name="hammer" />
             Show Tutorial
           </IonItem>
-        </IonList>
+        </IonList> */}
       </IonContent>
     </IonMenu>
   );

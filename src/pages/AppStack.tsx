@@ -4,7 +4,8 @@ import { connect } from "react-redux";
 import { Redirect, Route } from "react-router";
 import { actions, RootState } from "../store";
 import About from "./About";
-import MapView from "./Map";
+import ProfileView from "./Profile";
+// import MapView from "./Map";
 import SchedulePage from "./SchedulePage";
 import SessionDetail from "./SessionDetail";
 import SpeakerDetail from "./SpeakerDetail";
@@ -38,7 +39,8 @@ class AppStack extends React.Component<AppStackProps> {
             <Route path="/:tab(speakers)" component={SpeakerList} exact={true} />
             <Route path="/:tab(speakers)/speaker/:id" component={SpeakerDetail} />
             <Route path="/:tab(schedule|speakers)/sessions/:id" component={SessionDetail} />
-            <Route path="/:tab(map)" component={MapView} />
+            {/* <Route path="/:tab(map)" component={MapView} /> */}
+            <Route path="/:tab(profile)" component={ProfileView} />
             <Route path="/:tab(about)" component={About} />
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
@@ -50,10 +52,14 @@ class AppStack extends React.Component<AppStackProps> {
               <IonIcon name="contacts" />
               <IonLabel>Speakers</IonLabel>
             </IonTabButton>
-            <IonTabButton tab="map" href="/map">
+            <IonTabButton tab="profile" href="/profile">
+              <IonIcon name="contacts" />
+              <IonLabel>Profile</IonLabel>
+            </IonTabButton>
+            {/* <IonTabButton tab="map" href="/map">
               <IonIcon name="map" />
               <IonLabel>Map</IonLabel>
-            </IonTabButton>
+            </IonTabButton> */}
             <IonTabButton tab="about" href="/about">
               <IonIcon name="information-circle" />
               <IonLabel>About</IonLabel>
