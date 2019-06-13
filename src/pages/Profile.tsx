@@ -82,13 +82,20 @@ class Profile extends Component<Props, State> {
             <img src="assets/img/ionic-logo-white.svg" alt="ionic logo" />
           </div>
           <div className="ion-padding about-info">
-            <h4>Ionic Conference</h4>
-
             <IonList lines="none">
               <IonItem>
+                <IonLabel>Name</IonLabel>
+                <IonLabel>Hoge Bar</IonLabel>
+              </IonItem>
+              <IonItem>
                 <IonIcon name="calendar" slot="start" />
-                <IonLabel>Date</IonLabel>
+                <IonLabel>Birth Day</IonLabel>
                 <IonDatetime displayFormat="MMM DD, YYYY" max="2056" value={this.props.conferenceDate} />
+              </IonItem>
+              <IonItem>
+                <IonIcon name="calendar" slot="start" />
+                <IonLabel>Blood Type</IonLabel>
+                <IonLabel>A</IonLabel>
               </IonItem>
 
               <IonItem>
@@ -101,16 +108,12 @@ class Profile extends Component<Props, State> {
                   <IonSelectOption value="austin">Austin, TX</IonSelectOption>
                   <IonSelectOption value="chicago">Chicago, IL</IonSelectOption>
                   <IonSelectOption value="seattle">Seattle, WA</IonSelectOption>
+                  {/* <IonSelectOption value="foreigner">Foreign</IonSelectOption> */}
                 </IonSelect>
               </IonItem>
             </IonList>
 
-            <p>
-              The Ionic Conference is a one-day conference featuring talks from the Ionic team. It is focused on Ionic
-              applications being built with Ionic 2. This includes migrating apps from Ionic 1 to Ionic 2, Angular
-              concepts, Webpack, Sass, and many other technologies used in Ionic 2. Tickets are completely sold out, and
-              we’re expecting more than 1000 developers – making this the largest Ionic conference ever!
-            </p>
+            <p>HOGE Profile</p>
           </div>
         </IonContent>
       </>
