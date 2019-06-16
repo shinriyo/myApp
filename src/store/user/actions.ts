@@ -1,4 +1,5 @@
 import { createAction } from "typesafe-actions";
+import { authFirebase } from "./actions/login";
 
 export const sawTutorial = createAction("user/SAW_TUTORIAL", resolve => () => resolve(true));
 
@@ -11,3 +12,8 @@ export const updateUserPicture = createAction("user/UPDATE_PICTURE", resolve => 
 );
 
 export const setUsername = createAction("user/SET_USERNAME", resolve => (username: string) => resolve(username));
+
+// export const runAuthFirebase = createAction("user/AUTH_FIREBASE", resolve => () => resolve(authFirebase));
+export const runAuthFirebase = createAction("user/AUTH_FIREBASE", resolve => (name: string, pass: string) =>
+  resolve({ name, pass })
+);

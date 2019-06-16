@@ -34,9 +34,12 @@ class Login extends Component<Props, State> {
   }
 
   private updateUserName(e: CustomEvent) {}
-  logInUser = () => {
+  private logInUser = () => {
     this.props.logIn();
   };
+  private authFacebook() {
+    this.props.authFacebook();
+  }
 
   signUpUser() {
     alert(1);
@@ -89,11 +92,12 @@ class Login extends Component<Props, State> {
             <IonRow responsive-sm>
               <IonCol>
                 {/* submitしないとリロードされない */}
-                <IonButton onClick={this.logInUser} type="submit">
-                  Login
-                </IonButton>
+                {/* <IonButton onClick={this.logInUser} type="submit"> */}
+                <IonButton onClick={this.logInUser}>Login</IonButton>
               </IonCol>
               <IonCol>
+                <IonButton onClick={this.authFacebook}>Login with Facebook</IonButton>
+
                 <IonButton onClick={this.signUpUser} color="light">
                   Signup
                 </IonButton>
@@ -107,7 +111,10 @@ class Login extends Component<Props, State> {
 }
 
 const mapDispatchToProps = {
-  logIn: () => actions.user.logIn(),
+  // logIn: () => actions.user.logIn(),
+  logIn: () => actions.user.runAuthFirebase("", ""),
+  // TODO: あとで
+  authFacebook: () => actions.user.logIn(),
 };
 
 export default withRouter(
