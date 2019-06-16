@@ -6,6 +6,7 @@ import { actions, RootState } from "../store";
 import About from "./About";
 import ProfileView from "./Profile";
 // import MapView from "./Map";
+import Login from "./Login";
 import SchedulePage from "./SchedulePage";
 import SessionDetail from "./SessionDetail";
 import SpeakerDetail from "./SpeakerDetail";
@@ -42,6 +43,7 @@ class AppStack extends React.Component<AppStackProps> {
             {/* <Route path="/:tab(map)" component={MapView} /> */}
             <Route path="/:tab(profile)" component={ProfileView} />
             <Route path="/:tab(about)" component={About} />
+            <Route path="/:tab(login)" component={Login} />
           </IonRouterOutlet>
           <IonTabBar slot="bottom">
             <IonTabButton tab="schedule" href="/schedule">
@@ -53,13 +55,13 @@ class AppStack extends React.Component<AppStackProps> {
               <IonLabel>Speakers</IonLabel>
             </IonTabButton>
             <IonTabButton tab="profile" href="/profile">
-              <IonIcon name="contacts" />
+              <IonIcon name="person" />
               <IonLabel>Profile</IonLabel>
             </IonTabButton>
-            {/* <IonTabButton tab="map" href="/map">
-              <IonIcon name="map" />
-              <IonLabel>Map</IonLabel>
-            </IonTabButton> */}
+            <IonTabButton tab="login" href="/login">
+              <IonIcon name="log-in" />
+              <IonLabel>login</IonLabel>
+            </IonTabButton>
             <IonTabButton tab="about" href="/about">
               <IonIcon name="information-circle" />
               <IonLabel>About</IonLabel>

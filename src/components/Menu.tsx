@@ -17,24 +17,28 @@ import {
 import { RouteComponentProps, withRouter } from "react-router";
 
 const routes = {
-  appPages: [
+  // <RequiresTutorialRoute>を必要な系
+  // ログイン後
+  loggedInPages: [
+    { title: "Logout", path: "/logout", icon: "log-out" },
     { title: "Schedule", path: "/", icon: "calendar" },
     { title: "Speakers", path: "/speakers", icon: "contacts" },
-    { title: "Profile", path: "/profile", icon: "contacts" },
-    // { title: "Map", path: "/map", icon: "map" },
+  ],
+  // ログアウト系
+  loggedOutPages: [
+    { title: "Login", path: "/login", icon: "log-in" },
+    { title: "Signup", path: "/signup", icon: "person-add" },
+  ],
+  // 常に出したい
+  appPages: [
+    { title: "Support", path: "/support", icon: "help" },
+    // 人検索系にする
+    { title: "Profile", path: "/profile", icon: "person" },
     { title: "About", path: "/about", icon: "information-circle" },
     { title: "Logout", path: "/logout", icon: "log-out" },
+    // PrivateRoute
+    // { title: "Account", path: "/account", icon: "person" },
   ],
-  // loggedInPages: [
-  //   { title: "Account", path: "/account", icon: "person" },
-  //   { title: "Support", path: "/support", icon: "help" },
-  //   { title: "Logout", path: "/logout", icon: "log-out" },
-  // ],
-  // loggedOutPages: [
-  //   { title: "Login", path: "/login", icon: "log-in" },
-  //   { title: "Support", path: "/support", icon: "help" },
-  //   { title: "Signup", path: "/signup", icon: "person-add" },
-  // ],
 };
 
 type Props = RouteComponentProps<{}> & ReturnType<typeof mapStateToProps>;
@@ -61,20 +65,9 @@ const Menu: React.SFC<Props> = ({ isAuthenticated, history }) => {
       <IonContent class="outer-content">
         <IonList>
           {/* <IonListHeader>Navigate</IonListHeader> */}
-          {/* {renderlistItems(routes.appPages)} */}
-          {isAuthenticated ? renderlistItems(routes.appPages) : renderlistItems(routes.appPages)}
+          {isAuthenticated ? renderlistItems(routes.loggedInPages) : renderlistItems(routes.loggedOutPages)}
+          {renderlistItems(routes.appPages)}
         </IonList>
-        {/* <IonList>
-          <IonListHeader>Account</IonListHeader>
-          {isAuthenticated ? renderlistItems(routes.loggedOutPages) : renderlistItems(routes.loggedInPages)}
-        </IonList> */}
-        {/* <IonList>
-          <IonListHeader>Tutorial</IonListHeader>
-          <IonItem onClick={() => {}}>
-            <IonIcon slot="start" name="hammer" />
-            Show Tutorial
-          </IonItem>
-        </IonList> */}
       </IonContent>
     </IonMenu>
   );
