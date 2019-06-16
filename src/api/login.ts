@@ -2,7 +2,7 @@ import * as firebase from "firebase/app";
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
-import { config, FACEBOOK_APPID } from "../../../config";
+import { config, FACEBOOK_APPID } from "./../config";
 // import * as Expo from "expo";
 
 firebase.initializeApp(config);
@@ -21,12 +21,13 @@ export const getUid = () => {
 };
 
 // firebase上の認証
-export const authFirebase = async () => {
+export const authFirebase = async (a: any) => {
   firebase
     .auth()
     .signInWithEmailAndPassword("unko@unko.com", "chinkounko")
     .then(result => {
       alert(JSON.stringify(result.user));
+      a();
     })
     .catch(error => {
       alert(error);

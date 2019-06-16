@@ -18,6 +18,7 @@ import {
 } from "@ionic/react";
 import "./Login.css";
 import { withRouter, RouteComponentProps } from "react-router-dom";
+import { authFirebase } from "../api/login";
 
 type State = {
   username: string | null;
@@ -35,8 +36,9 @@ class Login extends Component<Props, State> {
 
   private updateUserName(e: CustomEvent) {}
   private logInUser = () => {
-    this.props.logIn();
+    authFirebase(this.props.logIn());
   };
+
   private authFacebook() {
     this.props.authFacebook();
   }
@@ -111,8 +113,7 @@ class Login extends Component<Props, State> {
 }
 
 const mapDispatchToProps = {
-  // logIn: () => actions.user.logIn(),
-  logIn: () => actions.user.runAuthFirebase("", ""),
+  logIn: () => actions.user.logIn(),
   // TODO: あとで
   authFacebook: () => actions.user.logIn(),
 };
