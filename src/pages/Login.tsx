@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { actions } from "../store";
 import {
   IonHeader,
   IonToolbar,
@@ -15,22 +17,29 @@ import {
   IonMenuButton,
 } from "@ionic/react";
 import "./Login.css";
+import { withRouter, RouteComponentProps } from "react-router-dom";
 
 type State = {
   username: string | null;
 };
 
-export default class Login extends Component<{}, State> {
-  constructor(props: {}) {
+type Props = RouteComponentProps<{}> & typeof mapDispatchToProps;
+
+class Login extends Component<Props, State> {
+  constructor(props: Props) {
     super(props);
     this.state = {
       username: null,
     };
   }
 
-  updateUserName(e: CustomEvent) {}
-  logInUser() {}
+  private updateUserName(e: CustomEvent) {}
+  logInUser = () => {
+    this.props.logIn();
+  };
+
   signUpUser() {
+    alert(1);
     // firebase
     //   .auth()
     //   .createUserWithEmailAndPassword(email, password)
@@ -79,6 +88,7 @@ export default class Login extends Component<{}, State> {
 
             <IonRow responsive-sm>
               <IonCol>
+                {/* submitしないとリロードされない */}
                 <IonButton onClick={this.logInUser} type="submit">
                   Login
                 </IonButton>
@@ -95,3 +105,14 @@ export default class Login extends Component<{}, State> {
     );
   }
 }
+
+const mapDispatchToProps = {
+  logIn: () => actions.user.logIn(),
+};
+
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(Login)
+);

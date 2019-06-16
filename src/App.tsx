@@ -5,7 +5,7 @@ import Account from "./pages/Account";
 import Login from "./pages/Login";
 import Support from "./pages/Support";
 import Signup from "./pages/Signup";
-import Tutorial from "./pages/Tutorial";
+// import Tutorial from "./pages/Tutorial";
 import AppStack from "./pages/AppStack";
 import Menu from "./components/Menu";
 import { IonApp, IonSplitPane, IonPage } from "@ionic/react";
@@ -26,12 +26,14 @@ const App = () => (
             <IonPage id="main">
               <Switch>
                 <PrivateRoute path="/account" component={Account} />
-                <Route path="/tutorial" component={Tutorial} />
+                {/* <Route path="/tutorial" component={Tutorial} /> */}
                 <Route path="/logout" />
+                <Route path="/login" component={Login} />
+                <Route path="/support" component={Support} />
+                <Route path="/signup" component={Signup} />
+                <Route path="/" component={AppStack} />
+                {/* <RequiresTutorialRoute>はセットすると中身が見えない */}
                 {/* <RequiresTutorialRoute path="/login" component={Login} /> */}
-                <RequiresTutorialRoute path="/support" component={Support} />
-                <RequiresTutorialRoute path="/signup" component={Signup} />
-                <RequiresTutorialRoute path="/" component={AppStack} />
               </Switch>
             </IonPage>
           </IonSplitPane>

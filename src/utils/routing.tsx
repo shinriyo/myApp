@@ -10,6 +10,7 @@ type Props = ReturnType<typeof mapStateToProps> & {
   path?: string | string[];
 };
 
+// Accountの時にloginに飛ばす仕組み
 class PRoute extends Component<Props> {
   render() {
     const Component = this.props.component;

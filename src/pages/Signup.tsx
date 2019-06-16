@@ -42,7 +42,6 @@ export default class Signup extends Component<{}, State> {
             <IonTitle>Signup</IonTitle>
           </IonToolbar>
         </IonHeader>
-        ,
         <IonContent class="page-user">
           <div className="logo">
             <img src="/assets/img/appicon.svg" alt="Ionic Logo" />

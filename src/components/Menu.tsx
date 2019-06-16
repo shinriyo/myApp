@@ -17,7 +17,7 @@ import {
 import { RouteComponentProps, withRouter } from "react-router";
 
 const routes = {
-  // <RequiresTutorialRoute>を必要な系
+  // <RequiresTutorialRoute>は中身が見えない
   // ログイン後
   loggedInPages: [
     { title: "Logout", path: "/logout", icon: "log-out" },
@@ -31,13 +31,13 @@ const routes = {
   ],
   // 常に出したい
   appPages: [
+    // { title: "Tutorial", path: "/tutorial", icon: "help" },
     { title: "Support", path: "/support", icon: "help" },
     // 人検索系にする
     { title: "Profile", path: "/profile", icon: "person" },
     { title: "About", path: "/about", icon: "information-circle" },
-    { title: "Logout", path: "/logout", icon: "log-out" },
     // PrivateRoute
-    // { title: "Account", path: "/account", icon: "person" },
+    { title: "Account", path: "/account", icon: "person" },
   ],
 };
 
