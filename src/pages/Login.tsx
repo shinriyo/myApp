@@ -18,7 +18,7 @@ import {
 } from "@ionic/react";
 import "./Login.css";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import { authFirebase } from "../api/login";
+import { authFirebase, getUid } from "../api/login";
 
 type State = {
   username: string | null;
@@ -32,19 +32,38 @@ class Login extends Component<Props, State> {
     this.state = {
       username: null,
     };
+
+    // ないと怒られる
+    this.updateUserName = this.updateUserName.bind(this);
+    this.validate = this.validate.bind(this);
   }
 
-  private updateUserName(e: CustomEvent) {}
+  // private updateUserName(e: CustomEvent) {
+  private updateUserName(e: any) {
+    if (e.target !== null) {
+      console.log(e.target.value);
+    }
+    this.setState({
+      username: e.currentTarget.value,
+    });
+  }
+
+  private validate() {}
+
   private logInUser = () => {
-    authFirebase(this.props.logIn());
+    alert(this.state.username);
+    // this.props.logInはかっこなしでコールバックとして呼ぶ
+    authFirebase("unko@unko.com", "chinkounko", this.props.logIn);
   };
 
   private authFacebook() {
     this.props.authFacebook();
   }
 
-  signUpUser() {
-    alert(1);
+  private signUpUser() {
+    // setUsername
+
+    alert(JSON.stringify(getUid()));
     // firebase
     //   .auth()
     //   .createUserWithEmailAndPassword(email, password)
@@ -78,6 +97,7 @@ class Login extends Component<Props, State> {
                 <IonLabel color="primary">Username</IonLabel>
                 <IonInput
                   onIonChange={this.updateUserName}
+                  onBlur={e => this.validate()}
                   name="username"
                   type="text"
                   autocapitalize="off"

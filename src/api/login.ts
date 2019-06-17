@@ -21,13 +21,13 @@ export const getUid = () => {
 };
 
 // firebase上の認証
-export const authFirebase = async (a: any) => {
+export const authFirebase = async (id: string, pass: string, callback: any) => {
   firebase
     .auth()
-    .signInWithEmailAndPassword("unko@unko.com", "chinkounko")
+    .signInWithEmailAndPassword(id, pass)
     .then(result => {
       alert(JSON.stringify(result.user));
-      a();
+      callback();
     })
     .catch(error => {
       alert(error);
