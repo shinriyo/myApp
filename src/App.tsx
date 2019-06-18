@@ -5,7 +5,7 @@ import Account from "./pages/Account";
 import Login from "./pages/Login";
 import Support from "./pages/Support";
 import Signup from "./pages/Signup";
-// import Tutorial from "./pages/Tutorial";
+import Logout from "./pages/Logout";
 import AppStack from "./pages/AppStack";
 import Menu from "./components/Menu";
 import { IonApp, IonSplitPane, IonPage } from "@ionic/react";
@@ -27,7 +27,8 @@ const App = () => (
               <Switch>
                 <PrivateRoute path="/account" component={Account} />
                 {/* <Route path="/tutorial" component={Tutorial} /> */}
-                <Route path="/logout" />
+                {/* ログアウトがわりに */}
+                <Route path="/logout" component={Logout} />
                 <Route path="/login" component={Login} />
                 <Route path="/support" component={Support} />
                 <Route path="/signup" component={Signup} />

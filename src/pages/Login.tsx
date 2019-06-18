@@ -36,6 +36,7 @@ class Login extends Component<Props, State> {
     // ないと怒られる
     this.updateUserName = this.updateUserName.bind(this);
     this.validate = this.validate.bind(this);
+    this.authFacebook = this.authFacebook.bind(this);
   }
 
   // private updateUserName(e: CustomEvent) {

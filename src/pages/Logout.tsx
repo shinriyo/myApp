@@ -21,7 +21,7 @@ type State = {
   showSkip: boolean;
 };
 
-class Tutorial extends Component<Props, State> {
+class Logout extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
@@ -84,5 +84,5 @@ export default withRouter(
   connect(
     null,
     mapDispatchToProps
-  )(Tutorial)
+  )(Logout)
 );

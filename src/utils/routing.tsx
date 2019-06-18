@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { RouteComponentProps } from "react-router";
-import Tutorial from "../pages/Tutorial";
+import Logout from "../pages/Logout";
 import { connect } from "react-redux";
 import { RootState } from "../store";
 
@@ -31,11 +31,12 @@ class PRoute extends Component<Props> {
   }
 }
 
+// TODO: これ消すかも？
 class RTRoute extends Component<Props> {
   render() {
     return (
       <>
-        {!this.props.user.hasSeenTutorial ? <Tutorial /> : null}
+        {!this.props.user.hasSeenTutorial ? <Logout /> : null}
         <div style={!this.props.user.hasSeenTutorial ? { display: "none" } : {}}>
           <Route {...this.props} />
         </div>

@@ -10,6 +10,7 @@ firebase.initializeApp(config);
 // auth
 export const auth = firebase.auth();
 
+// ログインしてるか判定にも使える
 export const getUid = () => {
   const user = firebase.auth().currentUser;
 
