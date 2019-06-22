@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 import { actions } from "../store";
 import {
   IonIcon,
-  IonHeader,
-  IonToolbar,
-  IonButtons,
+  // IonHeader,
+  // IonToolbar,
+  // IonButtons,
   IonButton,
   IonContent,
   IonSlides,
