@@ -67,6 +67,16 @@ class Login extends Component<Props, State> {
   private logInUser = () => {
     alert(this.state.username);
     // this.props.logInはかっこなしでコールバックとして呼ぶ
+    const username = this.state.username;
+    const password = this.state.username;
+
+    if (username === null || password === null) {
+      return;
+    }
+
+    // TODO:
+    // authFirebase(username, password, this.props.logIn);
+
     authFirebase("unko@unko.com", "chinkounko", this.props.logIn);
   };
 
