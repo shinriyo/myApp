@@ -13,7 +13,7 @@ import {
   IonPage,
 } from "@ionic/react";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import "./Tutorial.css";
+import "./Logout.css";
 
 type Props = RouteComponentProps<{}> & typeof mapDispatchToProps;
 

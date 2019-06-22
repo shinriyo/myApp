@@ -49,6 +49,7 @@ class Login extends Component<Props, State> {
     });
   }
 
+  // TODO: Signup参考にする
   private validate() {}
 
   private logInUser = () => {
