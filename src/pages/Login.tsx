@@ -22,6 +22,7 @@ import { authFirebase, getUid } from "../api/login";
 
 type State = {
   username: string | null;
+  password: string | null;
 };
 
 type Props = RouteComponentProps<{}> & typeof mapDispatchToProps;
@@ -31,26 +32,37 @@ class Login extends Component<Props, State> {
     super(props);
     this.state = {
       username: null,
+      password: null,
     };
 
     // ないと怒られる
     this.updateUserName = this.updateUserName.bind(this);
+    this.updatePassword = this.updatePassword.bind(this);
+
     this.validate = this.validate.bind(this);
     this.authFacebook = this.authFacebook.bind(this);
   }
 
-  // private updateUserName(e: CustomEvent) {
-  private updateUserName(e: any) {
-    if (e.target !== null) {
-      console.log(e.target.value);
-    }
+  private updateUserName(e: CustomEvent) {
+    e.preventDefault();
+
     this.setState({
-      username: e.currentTarget.value,
+      username: e.detail.value,
+    });
+  }
+
+  private updatePassword(e: CustomEvent) {
+    e.preventDefault();
+
+    this.setState({
+      password: e.detail.value,
     });
   }
 
   // TODO: Signup参考にする
-  private validate() {}
+  private validate(e: any) {
+    console.log(e);
+  }
 
   private logInUser = () => {
     alert(this.state.username);
@@ -99,7 +111,7 @@ class Login extends Component<Props, State> {
                 <IonLabel color="primary">Username</IonLabel>
                 <IonInput
                   onIonChange={this.updateUserName}
-                  onBlur={e => this.validate()}
+                  onBlur={e => this.validate(e)}
                   name="username"
                   type="text"
                   autocapitalize="off"
@@ -109,7 +121,15 @@ class Login extends Component<Props, State> {
               </IonItem>
               <IonItem>
                 <IonLabel color="primary">Password</IonLabel>
-                <IonInput name="password" type="password" required />
+                <IonInput
+                  onIonChange={this.updatePassword}
+                  onBlur={e => this.validate(e)}
+                  name="password"
+                  type="password"
+                  autocapitalize="off"
+                  value={this.state.password}
+                  required
+                />
               </IonItem>
             </IonList>
 
