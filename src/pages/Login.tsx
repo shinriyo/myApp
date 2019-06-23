@@ -83,14 +83,14 @@ class Login extends Component<Props, State> {
     // authFirebase(username, password, this.props.logIn);
 
     authFirebase("unko@unko.com", "chinkounko", (data: any) => {
-      // Action
-      this.props.logIn;
-
       // Modal
       this.setState({
         showFilterModal: true,
         body: JSON.stringify(data),
       });
+
+      // ログインしたAction
+      this.props.logIn();
     });
   };
 
@@ -112,6 +112,11 @@ class Login extends Component<Props, State> {
     //     var errorMessage = error.message;
     //     // ...
     //   });
+  }
+
+  componentDidMount() {
+    // 確認
+    alert(JSON.stringify(getUid()));
   }
 
   render() {
@@ -161,7 +166,7 @@ class Login extends Component<Props, State> {
             <IonRow responsive-sm>
               <IonCol>
                 {/* submitしないとリロードされない */}
-                {/* <IonButton onClick={this.logInUser} type="submit"> */}
+                {/* <IonButton onClick={this.logInUser} type="submit" /> */}
                 <IonButton onClick={this.logInUser}>Login</IonButton>
               </IonCol>
               <IonCol>
