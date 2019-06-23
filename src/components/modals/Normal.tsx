@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import { IonHeader, IonButton, IonButtons, IonToolbar, IonTitle, IonContent, IonLabel, IonPage } from "@ionic/react";
 
-type Props = {
+export interface Data {
   title: string;
+  body: string;
+}
+
+type Props = {
   // TODO;
-  body: any;
+  data: Data;
   dismissModal: () => void;
 };
 
@@ -21,16 +25,11 @@ export default class Normal extends Component<Props, {}> {
             <IonButtons slot="start">
               <IonButton onClick={this.props.dismissModal}>閉じる</IonButton>
             </IonButtons>
-            <IonTitle>{this.props.title}</IonTitle>
+            <IonTitle>{this.props.data.title}</IonTitle>
           </IonToolbar>
         </IonHeader>
         <IonContent class="outer-content">
-          <IonLabel>
-            {this.props.body.displayName || "名前未定義"}
-            がログインしました
-          </IonLabel>
-          <IonLabel>{this.props.body.email}</IonLabel>
-          <IonLabel>{JSON.stringify(this.props.body)}</IonLabel>
+          <IonLabel>{this.props.data.body}</IonLabel>
         </IonContent>
       </IonPage>
     );

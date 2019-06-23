@@ -20,14 +20,14 @@ import {
 import "./Login.css";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { authFirebase, checkLoggedIn } from "../api/login";
-import Normal from "../components/modals/Normal";
+import Normal, { Data } from "../components/modals/Normal";
 
 type State = {
   username: string | null;
   password: string | null;
-  showFilterModal: boolean;
-  // TODO:
-  body: any;
+  showLoggedInModal: boolean;
+  // モーダルの値
+  modalData: Data;
 };
 
 type Props = RouteComponentProps<{}> & typeof mapDispatchToProps;
@@ -38,8 +38,10 @@ class Login extends Component<Props, State> {
     this.state = {
       username: null,
       password: null,
-      showFilterModal: false,
-      body: "",
+      showLoggedInModal: false,
+
+      // モーダル初期値
+      modalData: { title: "", body: "" },
     };
 
     // ないと怒られる
@@ -80,13 +82,28 @@ class Login extends Component<Props, State> {
     }
 
     // TODO:
-    // authFirebase(username, password, this.props.logIn);
+    // authFirebase(username, password,
 
     authFirebase("unko@unko.com", "chinkounko", (data: any) => {
+      let modalData: Data;
+      if (data.user) {
+        // これは成功
+        modalData = {
+          title: "ログイン成功",
+          body: `ログイン成功しました! ${JSON.stringify(data.user)}`,
+        };
+      } else {
+        // 失敗
+        modalData = {
+          title: "ログイン失敗",
+          body: `ログイン失敗しました! code:${data.code} message:${data.message}`,
+        };
+      }
+
       // Modal
       this.setState({
-        showFilterModal: true,
-        body: data,
+        showLoggedInModal: true,
+        modalData,
       });
     });
 
@@ -98,6 +115,7 @@ class Login extends Component<Props, State> {
     this.props.authFacebook();
   }
 
+  // TODO: Signupに移動する
   private signUpUser() {
     // setUsername
     // TODO: firebase login
@@ -182,13 +200,12 @@ class Login extends Component<Props, State> {
             </IonRow>
           </form>
           <IonModal
-            isOpen={this.state.showFilterModal}
-            onDidDismiss={() => this.setState(() => ({ showFilterModal: false }))}
+            isOpen={this.state.showLoggedInModal}
+            onDidDismiss={() => this.setState(() => ({ showLoggedInModal: false }))}
           >
             <Normal
-              title="Loing"
-              body={this.state.body}
-              dismissModal={() => this.setState(() => ({ showFilterModal: false }))}
+              data={this.state.modalData}
+              dismissModal={() => this.setState(() => ({ showLoggedInModal: false }))}
             />
           </IonModal>
         </IonContent>
