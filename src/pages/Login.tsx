@@ -19,7 +19,7 @@ import {
 } from "@ionic/react";
 import "./Login.css";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import { authFirebase, checkLoggedIn } from "../api/login";
+import { authFirebase, checkLoggedIn, createUser } from "../api/login";
 import Normal, { Data } from "../components/modals/Normal";
 
 type State = {
@@ -48,6 +48,7 @@ class Login extends Component<Props, State> {
     this.updateUserName = this.updateUserName.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
     this.submit = this.submit.bind(this);
+    this.signUpUser = this.signUpUser.bind(this);
 
     // TOOD:
     this.authFacebook = this.authFacebook.bind(this);
@@ -115,19 +116,40 @@ class Login extends Component<Props, State> {
     this.props.authFacebook();
   }
 
-  // TODO: Signupに移動する
+  // TODO: Signupに移動する?
   private signUpUser() {
-    // setUsername
-    // TODO: firebase login
-    // firebase
-    //   .auth()
-    //   .createUserWithEmailAndPassword(email, password)
-    //   .catch(function(error) {
-    //     // Handle Errors here.
-    //     var errorCode = error.code;
-    //     var errorMessage = error.message;
-    //     // ...
-    //   });
+    const username = this.state.username;
+    const password = this.state.password;
+
+    if (username === null || password === null) {
+      return;
+    }
+
+    createUser(username, password, (data: any) => {
+      let modalData: Data;
+      if (data.user) {
+        modalData = {
+          title: "新規作成",
+          bodyItems: [`新規作成成功しました!`],
+        };
+      } else {
+        // TODO: firebase login
+        // setUsername
+        const errorCode = data.code;
+        const errorMessage = data.message;
+
+        modalData = {
+          title: "新規失敗",
+          bodyItems: [`新規作成失敗しました!`, errorCode, errorMessage],
+        };
+      }
+
+      // Modal
+      this.setState({
+        showLoggedInModal: true,
+        modalData,
+      });
+    });
   }
 
   // 必ずログイン画面を通るのでここで飛ばせばOK

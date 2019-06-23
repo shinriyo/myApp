@@ -18,6 +18,7 @@ export const checkLoggedIn = (callback: any) => {
   });
 };
 
+// UID取得
 export const getUid = () => {
   const user = firebase.auth().currentUser;
 
@@ -26,6 +27,20 @@ export const getUid = () => {
   } else {
     return { uid: null };
   }
+};
+
+// 作る
+export const createUser = (email: string, password: string, callback: any) => {
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then(result => {
+      // callback(result.user);
+    })
+    .catch(error => {
+      // Handle Errors here.
+      callback(error);
+    });
 };
 
 // firebase上の認証
