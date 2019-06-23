@@ -29,9 +29,9 @@ export default class Normal extends Component<Props, {}> {
           </IonToolbar>
         </IonHeader>
         <IonContent class="outer-content">
-          {this.props.data.bodyItems.map(item => {
+          {this.props.data.bodyItems.map((item: string, index: number) => {
             return (
-              <div>
+              <div key={`modal_item_${index}`}>
                 <IonLabel>{item}</IonLabel>
               </div>
             );
