@@ -19,7 +19,7 @@ export default class Normal extends Component<Props, {}> {
         <IonHeader>
           <IonToolbar>
             <IonButtons slot="start">
-              <IonButton onClick={this.props.dismissModal}>Cancel</IonButton>
+              <IonButton onClick={this.props.dismissModal}>閉じる</IonButton>
             </IonButtons>
             <IonTitle>{this.props.title}</IonTitle>
           </IonToolbar>
@@ -27,7 +27,7 @@ export default class Normal extends Component<Props, {}> {
         <IonContent class="outer-content">
           <IonLabel>
             {this.props.body.displayName || "名前未定義"}
-            がログイン
+            がログインしました
           </IonLabel>
           <IonLabel>{this.props.body.email}</IonLabel>
           <IonLabel>{JSON.stringify(this.props.body)}</IonLabel>
