@@ -50,25 +50,25 @@ class Login extends Component<Props, State> {
     this.authFacebook = this.authFacebook.bind(this);
   }
 
-  private updateUserName(e: CustomEvent) {
-    e.preventDefault();
+  private updateUserName(event: CustomEvent) {
+    event.preventDefault();
 
     this.setState({
-      username: e.detail.value,
+      username: event.detail.value,
     });
   }
 
-  private updatePassword(e: CustomEvent) {
-    e.preventDefault();
+  private updatePassword(event: CustomEvent) {
+    event.preventDefault();
 
     this.setState({
-      password: e.detail.value,
+      password: event.detail.value,
     });
   }
 
   // TODO: Signup参考にする
-  private validate(e: any) {
-    console.log(e);
+  private validate(event: any) {
+    console.log(event);
   }
 
   private submit = () => {
@@ -101,8 +101,6 @@ class Login extends Component<Props, State> {
 
   private signUpUser() {
     // setUsername
-
-    alert(JSON.stringify(getUid()));
     // TODO: firebase login
     // firebase
     //   .auth()
@@ -116,8 +114,13 @@ class Login extends Component<Props, State> {
   }
 
   componentDidMount() {
-    // 確認
-    alert(JSON.stringify(getUid()));
+    // ログイン確認
+    const user = getUid();
+    if (user.uid === null) {
+      return;
+    }
+
+    user.uid;
   }
 
   render() {
