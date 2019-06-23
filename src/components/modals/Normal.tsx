@@ -3,7 +3,7 @@ import { IonHeader, IonButton, IonButtons, IonToolbar, IonTitle, IonContent, Ion
 
 export interface Data {
   title: string;
-  body: string;
+  bodyItems: string[];
 }
 
 type Props = {
@@ -29,7 +29,13 @@ export default class Normal extends Component<Props, {}> {
           </IonToolbar>
         </IonHeader>
         <IonContent class="outer-content">
-          <IonLabel>{this.props.data.body}</IonLabel>
+          {this.props.data.bodyItems.map(item => {
+            return (
+              <IonContent>
+                <IonLabel>{item}</IonLabel>
+              </IonContent>
+            );
+          })}
         </IonContent>
       </IonPage>
     );

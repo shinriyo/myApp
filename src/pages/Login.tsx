@@ -41,7 +41,7 @@ class Login extends Component<Props, State> {
       showLoggedInModal: false,
 
       // モーダル初期値
-      modalData: { title: "", body: "" },
+      modalData: { title: "", bodyItems: [] },
     };
 
     // ないと怒られる
@@ -90,13 +90,13 @@ class Login extends Component<Props, State> {
         // これは成功
         modalData = {
           title: "ログイン成功",
-          body: `ログイン成功しました! ${JSON.stringify(data.user)}`,
+          bodyItems: [`ログイン成功しました!`, JSON.stringify(data.user)],
         };
       } else {
         // 失敗
         modalData = {
           title: "ログイン失敗",
-          body: `ログイン失敗しました! code:${data.code} message:${data.message}`,
+          bodyItems: ["ログイン失敗しました!", `code:${data.code}`, `message:${data.message}`],
         };
       }
 
