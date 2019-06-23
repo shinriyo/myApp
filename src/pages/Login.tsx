@@ -148,8 +148,9 @@ class Login extends Component<Props, State> {
 
         <IonContent>
           <div className="logo">
-            <img src="assets/img/appicon.svg" alt="Ionic logo" />
+            <img src="assets/img/appicon.svg" alt="Ionic logo" width="200px" />
           </div>
+          <div>ログインしようぜ。</div>
           <form onSubmit={this.submit}>
             <IonList no-lines>
               <IonItem>

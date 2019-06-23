@@ -29,8 +29,9 @@ export default class Support extends Component {
 
         <IonContent class="page-user">
           <div className="logo">
-            <img src="/assets/img/appicon.svg" alt="Ionic Logo" />
+            <img src="/assets/img/appicon.svg" alt="Ionic Logo" width="200px" />
           </div>
+          <div>サポートします。お気軽に。</div>
           <form onSubmit={() => this.submit()}>
             <IonList no-lines>
               <IonItem>

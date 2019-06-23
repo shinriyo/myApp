@@ -118,8 +118,9 @@ export default class Signup extends Component<{}, State> {
         </IonHeader>
         <IonContent class="page-user">
           <div className="logo">
-            <img src="/assets/img/appicon.svg" alt="Ionic Logo" />
+            <img src="assets/img/appicon.svg" alt="Ionic logo" width="200px" />
           </div>
+          <div>新規登録しようぜ。</div>
           <form ref={this.signupFormRef} onSubmit={this.onSignup}>
             <IonList no-lines>
               <IonItem>
