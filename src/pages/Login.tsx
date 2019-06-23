@@ -15,14 +15,17 @@ import {
   IonRow,
   IonCol,
   IonMenuButton,
+  IonModal,
 } from "@ionic/react";
 import "./Login.css";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { authFirebase, getUid } from "../api/login";
+import Normal from "../components/modals/Normal";
 
 type State = {
   username: string | null;
   password: string | null;
+  showFilterModal: boolean;
 };
 
 type Props = RouteComponentProps<{}> & typeof mapDispatchToProps;
@@ -33,6 +36,7 @@ class Login extends Component<Props, State> {
     this.state = {
       username: null,
       password: null,
+      showFilterModal: false,
     };
 
     // ないと怒られる
@@ -71,6 +75,9 @@ class Login extends Component<Props, State> {
     const password = this.state.username;
 
     if (username === null || password === null) {
+      this.setState({
+        showFilterModal: true,
+      });
       return;
     }
 
@@ -88,6 +95,7 @@ class Login extends Component<Props, State> {
     // setUsername
 
     alert(JSON.stringify(getUid()));
+    // TODO: firebase login
     // firebase
     //   .auth()
     //   .createUserWithEmailAndPassword(email, password)
@@ -158,6 +166,17 @@ class Login extends Component<Props, State> {
               </IonCol>
             </IonRow>
           </form>
+          <IonModal
+            isOpen={this.state.showFilterModal}
+            onDidDismiss={() => this.setState(() => ({ showFilterModal: false }))}
+          >
+            <Normal
+              // filteredTracks={this.props.filteredTracks}
+              // allTracks={this.props.allTracks}
+              // updateTrackFilters={this.props.updateTrackFilters}
+              dismissModal={() => this.setState(() => ({ showFilterModal: false }))}
+            />
+          </IonModal>
         </IonContent>
       </>
     );
@@ -166,7 +185,7 @@ class Login extends Component<Props, State> {
 
 const mapDispatchToProps = {
   logIn: () => actions.user.logIn(),
-  // TODO: あとで
+  // TODO: あとで(Ionicなんてらじゃないとダメ？)
   authFacebook: () => actions.user.logIn(),
 };
 
