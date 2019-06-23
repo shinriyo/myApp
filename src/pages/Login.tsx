@@ -16,6 +16,7 @@ import {
   IonCol,
   IonMenuButton,
   IonModal,
+  IonTextarea,
 } from "@ionic/react";
 import "./Login.css";
 import { withRouter, RouteComponentProps } from "react-router-dom";
@@ -70,7 +71,7 @@ class Login extends Component<Props, State> {
     console.log(e);
   }
 
-  private logInUser = () => {
+  private submit = () => {
     // this.props.logInはかっこなしでコールバックとして呼ぶ
     const username = this.state.username;
     const password = this.state.password;
@@ -135,7 +136,7 @@ class Login extends Component<Props, State> {
           <div className="logo">
             <img src="assets/img/appicon.svg" alt="Ionic logo" />
           </div>
-          <form noValidate>
+          <form onSubmit={() => this.submit()}>
             <IonList no-lines>
               <IonItem>
                 <IonLabel color="primary">Username</IonLabel>
@@ -166,8 +167,7 @@ class Login extends Component<Props, State> {
             <IonRow responsive-sm>
               <IonCol>
                 {/* submitしないとリロードされない */}
-                {/* <IonButton onClick={this.logInUser} type="submit" /> */}
-                <IonButton onClick={this.logInUser}>Login</IonButton>
+                <IonButton type="submit">Login</IonButton>
               </IonCol>
               <IonCol>
                 <IonButton onClick={this.authFacebook}>Login with Facebook</IonButton>
