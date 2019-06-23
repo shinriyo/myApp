@@ -118,38 +118,7 @@ class Login extends Component<Props, State> {
 
   // TODO: Signupに移動する?
   private signUpUser() {
-    const username = this.state.username;
-    const password = this.state.password;
-
-    if (username === null || password === null) {
-      return;
-    }
-
-    createUser(username, password, (data: any) => {
-      let modalData: Data;
-      if (data.user) {
-        modalData = {
-          title: "新規作成",
-          bodyItems: [`新規作成成功しました!`],
-        };
-      } else {
-        // TODO: firebase login
-        // setUsername
-        const errorCode = data.code;
-        const errorMessage = data.message;
-
-        modalData = {
-          title: "新規失敗",
-          bodyItems: [`新規作成失敗しました!`, errorCode, errorMessage],
-        };
-      }
-
-      // Modal
-      this.setState({
-        showLoggedInModal: true,
-        modalData,
-      });
-    });
+    this.props.history.push("/signup");
   }
 
   // 必ずログイン画面を通るのでここで飛ばせばOK
