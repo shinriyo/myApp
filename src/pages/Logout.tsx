@@ -1,43 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { actions } from "../store";
 import {
-  IonIcon,
-  // IonHeader,
-  // IonToolbar,
-  // IonButtons,
-  IonButton,
+  IonMenuButton,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonTitle,
   IonContent,
-  IonSlides,
-  IonSlide,
-  IonPage,
+  IonItem,
+  IonButton,
 } from "@ionic/react";
-import { withRouter, RouteComponentProps } from "react-router-dom";
-import "./Logout.css";
+import { actions } from "../store";
+import { withRouter, RouteComponentProps } from "react-router";
+import { signOut } from "../api/login";
 
 type Props = RouteComponentProps<{}> & typeof mapDispatchToProps;
-
 type State = {
   showSkip: boolean;
 };
 
 class Logout extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      showSkip: false,
-    };
-  }
+  submit() {}
 
-  onSlideChangeStart = () => {
-    this.setState((state, props) => ({
-      ...state,
-      showSkip: !state.showSkip,
-    }));
-  };
-
-  logIn = () => {
-    this.props.logIn();
+  goLogIn = () => {
+    this.props.history.push("/login");
   };
 
   logOut = () => {
@@ -48,28 +34,39 @@ class Logout extends Component<Props, State> {
     this.props.sawTutorial();
   };
 
+  componentDidMount() {
+    // firebade
+    signOut();
+
+    // actionログアウト
+    this.logOut();
+  }
+
   render() {
     return (
-      <IonPage className="tutorial-page">
-        <IonContent no-bounce>
-          <IonSlides onIonSlideWillChange={this.onSlideChangeStart} pager={false}>
-            <IonSlide>
-              <IonButton fill="clear" onClick={this.logIn}>
-                LogIn
-                <IonIcon slot="end" name="arrow-forward" />
+      <>
+        <IonHeader>
+          <IonToolbar>
+            <IonButtons slot="start">
+              <IonMenuButton />
+            </IonButtons>
+            <IonTitle>Logout</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+
+        <IonContent class="page-user">
+          <div className="logo">
+            <img src="/assets/img/appicon.svg" alt="Ionic Logo" />
+          </div>
+          <div>
+            <IonItem>
+              <IonButton onClick={this.goLogIn} color="light">
+                Go Login
               </IonButton>
-              <IonButton fill="clear" onClick={this.logOut}>
-                LogOut
-                <IonIcon slot="end" name="arrow-forward" />
-              </IonButton>
-              <IonButton fill="clear" onClick={this.endTutorial}>
-                Continue
-                <IonIcon slot="end" name="arrow-forward" />
-              </IonButton>
-            </IonSlide>
-          </IonSlides>
+            </IonItem>
+          </div>
         </IonContent>
-      </IonPage>
+      </>
     );
   }
 }

@@ -10,7 +10,14 @@ firebase.initializeApp(config);
 // auth
 export const auth = firebase.auth();
 
-// ログインしてるか判定にも使える
+// ログインしてるか判定
+export const checkLoggedIn = (callback: any) => {
+  firebase.auth().onAuthStateChanged(user => {
+    // User is signed in.
+    callback(user);
+  });
+};
+
 export const getUid = () => {
   const user = firebase.auth().currentUser;
 
@@ -55,7 +62,7 @@ export const authFacebook = async () => {
   }
 };
 */
-export const logout = () => {
+export const signOut = () => {
   return firebase.auth().signOut();
 };
 

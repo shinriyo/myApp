@@ -16,11 +16,10 @@ import {
   IonCol,
   IonMenuButton,
   IonModal,
-  IonTextarea,
 } from "@ionic/react";
 import "./Login.css";
 import { withRouter, RouteComponentProps } from "react-router-dom";
-import { authFirebase, getUid } from "../api/login";
+import { authFirebase, checkLoggedIn } from "../api/login";
 import Normal from "../components/modals/Normal";
 
 type State = {
@@ -71,7 +70,10 @@ class Login extends Component<Props, State> {
     console.log(event);
   }
 
-  private submit = () => {
+  private submit(event: CustomEvent) {
+    // don't reload
+    event.preventDefault();
+
     // this.props.logInはかっこなしでコールバックとして呼ぶ
     const username = this.state.username;
     const password = this.state.password;
@@ -89,11 +91,11 @@ class Login extends Component<Props, State> {
         showFilterModal: true,
         body: JSON.stringify(data),
       });
-
-      // ログインしたAction
-      this.props.logIn();
     });
-  };
+
+    // don't reload
+    return false;
+  }
 
   private authFacebook() {
     this.props.authFacebook();
@@ -115,12 +117,14 @@ class Login extends Component<Props, State> {
 
   componentDidMount() {
     // ログイン確認
-    const user = getUid();
-    if (user.uid === null) {
-      return;
-    }
-
-    user.uid;
+    checkLoggedIn((user: any) => {
+      if (user) {
+        // ログイン
+        this.props.logIn();
+      } else {
+        // 未ログイン
+      }
+    });
   }
 
   render() {
@@ -139,7 +143,7 @@ class Login extends Component<Props, State> {
           <div className="logo">
             <img src="assets/img/appicon.svg" alt="Ionic logo" />
           </div>
-          <form onSubmit={() => this.submit()}>
+          <form onSubmit={this.submit}>
             <IonList no-lines>
               <IonItem>
                 <IonLabel color="primary">Username</IonLabel>
