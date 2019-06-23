@@ -44,6 +44,7 @@ class Login extends Component<Props, State> {
     // ないと怒られる
     this.updateUserName = this.updateUserName.bind(this);
     this.updatePassword = this.updatePassword.bind(this);
+    this.submit = this.submit.bind(this);
 
     this.validate = this.validate.bind(this);
     this.authFacebook = this.authFacebook.bind(this);
@@ -70,7 +71,7 @@ class Login extends Component<Props, State> {
     console.log(event);
   }
 
-  private submit(event: CustomEvent) {
+  private submit(event: any) {
     // don't reload
     event.preventDefault();
 

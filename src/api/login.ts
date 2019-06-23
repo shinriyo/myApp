@@ -37,7 +37,7 @@ export const authFirebase = async (id: string, pass: string, callback: any) => {
       callback(result.user);
     })
     .catch(error => {
-      alert(error);
+      callback(error);
     });
 };
 
