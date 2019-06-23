@@ -9,6 +9,7 @@ import {
   IonContent,
   IonItem,
   IonButton,
+  IonLabel,
 } from "@ionic/react";
 import { actions } from "../store";
 import { withRouter, RouteComponentProps } from "react-router";
@@ -60,6 +61,7 @@ class Logout extends Component<Props, State> {
           </div>
           <div>
             <IonItem>
+              <IonLabel>ログアウトしました</IonLabel>
               <IonButton onClick={this.goLogIn} color="light">
                 Go Login
               </IonButton>

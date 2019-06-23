@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, FormEvent } from "react";
 import { connect } from "react-redux";
 import { actions } from "../store";
 import {
@@ -26,7 +26,8 @@ type State = {
   username: string | null;
   password: string | null;
   showFilterModal: boolean;
-  body: string;
+  // TODO:
+  body: any;
 };
 
 type Props = RouteComponentProps<{}> & typeof mapDispatchToProps;
@@ -46,7 +47,7 @@ class Login extends Component<Props, State> {
     this.updatePassword = this.updatePassword.bind(this);
     this.submit = this.submit.bind(this);
 
-    this.validate = this.validate.bind(this);
+    // TOOD:
     this.authFacebook = this.authFacebook.bind(this);
   }
 
@@ -66,12 +67,7 @@ class Login extends Component<Props, State> {
     });
   }
 
-  // TODO: Signup参考にする
-  private validate(event: any) {
-    console.log(event);
-  }
-
-  private submit(event: any) {
+  private submit(event: FormEvent) {
     // don't reload
     event.preventDefault();
 
@@ -90,7 +86,7 @@ class Login extends Component<Props, State> {
       // Modal
       this.setState({
         showFilterModal: true,
-        body: JSON.stringify(data),
+        body: data,
       });
     });
 
@@ -150,7 +146,6 @@ class Login extends Component<Props, State> {
                 <IonLabel color="primary">Username</IonLabel>
                 <IonInput
                   onIonChange={this.updateUserName}
-                  onBlur={e => this.validate(e)}
                   name="username"
                   type="text"
                   autocapitalize="off"
@@ -162,7 +157,6 @@ class Login extends Component<Props, State> {
                 <IonLabel color="primary">Password</IonLabel>
                 <IonInput
                   onIonChange={this.updatePassword}
-                  onBlur={e => this.validate(e)}
                   name="password"
                   type="password"
                   autocapitalize="off"

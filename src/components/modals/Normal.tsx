@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { IonHeader, IonButton, IonButtons, IonToolbar, IonTitle, IonContent, IonPage } from "@ionic/react";
+import { IonHeader, IonButton, IonButtons, IonToolbar, IonTitle, IonContent, IonLabel, IonPage } from "@ionic/react";
 
 type Props = {
   title: string;
-  body: string;
+  // TODO;
+  body: any;
   dismissModal: () => void;
 };
 
@@ -23,7 +24,14 @@ export default class Normal extends Component<Props, {}> {
             <IonTitle>{this.props.title}</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonContent class="outer-content">{this.props.body}</IonContent>
+        <IonContent class="outer-content">
+          <IonLabel>
+            {this.props.body.displayName || "名前未定義"}
+            がログイン
+          </IonLabel>
+          <IonLabel>{this.props.body.email}</IonLabel>
+          <IonLabel>{JSON.stringify(this.props.body)}</IonLabel>
+        </IonContent>
       </IonPage>
     );
   }
