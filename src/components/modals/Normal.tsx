@@ -1,59 +1,16 @@
 import React, { Component } from "react";
-import {
-  IonHeader,
-  IonButton,
-  IonButtons,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonList,
-  IonListHeader,
-  IonItem,
-  IonLabel,
-  IonToggle,
-  IonPage,
-} from "@ionic/react";
+import { IonHeader, IonButton, IonButtons, IonToolbar, IonTitle, IonContent, IonPage } from "@ionic/react";
 
 type Props = {
-  // filteredTracks: string[];
-  // allTracks: string[];
+  title: string;
+  body: string;
   dismissModal: () => void;
-  // updateTrackFilters: (trackList: string[]) => void;
 };
 
-type State = {
-  trackFilters: string[];
-};
-
-export default class Normal extends Component<Props, State> {
+export default class Normal extends Component<Props, {}> {
   constructor(props: Props) {
     super(props);
-
-    // this.state = {
-    //   trackFilters: props.filteredTracks,
-    // };
   }
-
-  toggleTrackFilter = (e: CustomEvent) => {
-    this.setState(prevState => {
-      const trackFilters = e.detail.checked
-        ? prevState.trackFilters.concat(e.detail.value)
-        : prevState.trackFilters.filter(track => track !== e.detail.value);
-      return {
-        trackFilters,
-      };
-    });
-  };
-
-  resetFilters = () => {
-    // this.props.updateTrackFilters([]);
-    this.props.dismissModal();
-  };
-
-  applyFilters = () => {
-    // this.props.updateTrackFilters(this.state.trackFilters);
-    this.props.dismissModal();
-  };
 
   render() {
     return (
@@ -63,37 +20,10 @@ export default class Normal extends Component<Props, State> {
             <IonButtons slot="start">
               <IonButton onClick={this.props.dismissModal}>Cancel</IonButton>
             </IonButtons>
-            <IonTitle>Filter Sessions</IonTitle>
-            <IonButtons slot="end">
-              <IonButton onClick={this.applyFilters} strong>
-                Done
-              </IonButton>
-            </IonButtons>
+            <IonTitle>{this.props.title}</IonTitle>
           </IonToolbar>
         </IonHeader>
-
-        <IonContent class="outer-content">
-          <IonList>
-            <IonListHeader>Tracks</IonListHeader>
-            {/* {this.props.allTracks.map(track => (
-              <IonItem key={track}>
-                <span slot="start" className="dot" />
-                <IonLabel>{track}</IonLabel>
-                <IonToggle
-                  onIonChange={this.toggleTrackFilter}
-                  checked={this.state.trackFilters.indexOf(track) !== -1}
-                  color="success"
-                  value={track}
-                />
-              </IonItem>
-            ))} */}
-          </IonList>
-          <IonList>
-            <IonItem onClick={this.resetFilters} detail={false} class="reset-filters">
-              Reset All Filters
-            </IonItem>
-          </IonList>
-        </IonContent>
+        <IonContent class="outer-content">{this.props.body}</IonContent>
       </IonPage>
     );
   }

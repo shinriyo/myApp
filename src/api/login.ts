@@ -27,8 +27,7 @@ export const authFirebase = async (id: string, pass: string, callback: any) => {
     .auth()
     .signInWithEmailAndPassword(id, pass)
     .then(result => {
-      alert(JSON.stringify(result.user));
-      callback();
+      callback(result.user);
     })
     .catch(error => {
       alert(error);

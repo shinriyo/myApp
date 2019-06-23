@@ -26,6 +26,7 @@ type State = {
   username: string | null;
   password: string | null;
   showFilterModal: boolean;
+  body: string;
 };
 
 type Props = RouteComponentProps<{}> & typeof mapDispatchToProps;
@@ -37,6 +38,7 @@ class Login extends Component<Props, State> {
       username: null,
       password: null,
       showFilterModal: false,
+      body: "",
     };
 
     // ないと怒られる
@@ -69,22 +71,27 @@ class Login extends Component<Props, State> {
   }
 
   private logInUser = () => {
-    alert(this.state.username);
     // this.props.logInはかっこなしでコールバックとして呼ぶ
     const username = this.state.username;
-    const password = this.state.username;
+    const password = this.state.password;
 
     if (username === null || password === null) {
-      this.setState({
-        showFilterModal: true,
-      });
       return;
     }
 
     // TODO:
     // authFirebase(username, password, this.props.logIn);
 
-    authFirebase("unko@unko.com", "chinkounko", this.props.logIn);
+    authFirebase("unko@unko.com", "chinkounko", (data: any) => {
+      // Action
+      this.props.logIn;
+
+      // Modal
+      this.setState({
+        showFilterModal: true,
+        body: JSON.stringify(data),
+      });
+    });
   };
 
   private authFacebook() {
@@ -171,9 +178,8 @@ class Login extends Component<Props, State> {
             onDidDismiss={() => this.setState(() => ({ showFilterModal: false }))}
           >
             <Normal
-              // filteredTracks={this.props.filteredTracks}
-              // allTracks={this.props.allTracks}
-              // updateTrackFilters={this.props.updateTrackFilters}
+              title="Loing"
+              body={this.state.body}
               dismissModal={() => this.setState(() => ({ showFilterModal: false }))}
             />
           </IonModal>
