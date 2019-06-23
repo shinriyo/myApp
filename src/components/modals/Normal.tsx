@@ -31,9 +31,9 @@ export default class Normal extends Component<Props, {}> {
         <IonContent class="outer-content">
           {this.props.data.bodyItems.map(item => {
             return (
-              <IonContent>
+              <div>
                 <IonLabel>{item}</IonLabel>
-              </IonContent>
+              </div>
             );
           })}
         </IonContent>
