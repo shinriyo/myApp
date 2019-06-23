@@ -112,6 +112,7 @@ class Login extends Component<Props, State> {
     //   });
   }
 
+  // 必ずログイン画面を通るのでここで飛ばせばOK
   componentDidMount() {
     // ログイン確認
     checkLoggedIn((user: any) => {

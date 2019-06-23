@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { PrivateRoute, RequiresTutorialRoute } from "./utils/routing";
 import Account from "./pages/Account";
+import Profile from "./pages/Profile";
 import Login from "./pages/Login";
 import Support from "./pages/Support";
 import Signup from "./pages/Signup";
@@ -25,14 +26,16 @@ const App = () => (
             <Menu />
             <IonPage id="main">
               <Switch>
+                {/* ログインに無理やり飛ばす仕組み */}
                 <PrivateRoute path="/account" component={Account} />
-                {/* <Route path="/tutorial" component={Tutorial} /> */}
+                <PrivateRoute path="/profile" component={Profile} />
                 {/* ログアウトがわりに */}
                 <Route path="/logout" component={Logout} />
                 <Route path="/login" component={Login} />
                 <Route path="/support" component={Support} />
                 <Route path="/signup" component={Signup} />
                 <Route path="/" component={AppStack} />
+                {/* <Route path="/tutorial" component={Tutorial} /> */}
                 {/* <RequiresTutorialRoute>はセットすると中身が見えない */}
                 {/* <RequiresTutorialRoute path="/login" component={Login} /> */}
               </Switch>

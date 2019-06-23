@@ -10,11 +10,12 @@ type Props = ReturnType<typeof mapStateToProps> & {
   path?: string | string[];
 };
 
-// Accountの時にloginに飛ばす仕組み
+// <PrivateRoute>で囲った時 x(Account)の時にloginに飛ばす仕組み
 class PRoute extends Component<Props> {
   render() {
     const Component = this.props.component;
     const routeRender = (props: any) => {
+      console.log(this.props.user.isAuthenticated);
       if (this.props.user.isAuthenticated) {
         return React.createElement(Component, props);
       }
