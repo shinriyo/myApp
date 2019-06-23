@@ -10,7 +10,7 @@ type Props = ReturnType<typeof mapStateToProps> & {
   path?: string | string[];
 };
 
-// <PrivateRoute>で囲った時 x(Account)の時にloginに飛ばす仕組み
+// App.tsxで<PrivateRoute>で囲った時 x(Account)の時にloginに飛ばす仕組み
 class PRoute extends Component<Props> {
   render() {
     const Component = this.props.component;
