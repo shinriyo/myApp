@@ -143,6 +143,9 @@ class Profile extends Component<Props, State> {
                   <IonSelectOption value="austin">Austin, TX</IonSelectOption>
                   <IonSelectOption value="chicago">Chicago, IL</IonSelectOption>
                   <IonSelectOption value="seattle">Seattle, WA</IonSelectOption>
+                  {this.state.countries.map((country: any, index: number) => {
+                    return (<IonSelectOption value={index}>{country}</IonSelectOption>);
+                  })}
                   {/* <IonSelectOption value="foreigner">Foreign</IonSelectOption> */}
                 </IonSelect>
               </IonItem>
