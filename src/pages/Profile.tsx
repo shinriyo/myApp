@@ -17,6 +17,7 @@ import {
   IonLabel,
   IonDatetime,
   IonTitle,
+  IonTextarea,
 } from "@ionic/react";
 import "./Profile.css";
 import AboutPopover from "../components/AboutPopover";
@@ -39,6 +40,7 @@ class Profile extends Component<Props, State> {
       username: "user name",
       bloodType: "A",
       birthDay: "1994-01-01",
+      memo: "aoueo アイウエオ",
     };
 
     this.state = {
@@ -110,7 +112,7 @@ class Profile extends Component<Props, State> {
                 />
               </IonItem>
               <IonItem>
-                <IonIcon name="calendar" slot="start" />
+                <IonIcon name="water" slot="start" />
                 <IonLabel>Blood Type</IonLabel>
                 <IonLabel>A</IonLabel>
               </IonItem>
@@ -129,8 +131,10 @@ class Profile extends Component<Props, State> {
                 </IonSelect>
               </IonItem>
             </IonList>
-
-            <p>HOGE Profile</p>
+            <IonTextarea>自己紹介: {this.state.userData.memo}</IonTextarea>
+            <div>
+              <IonButton type="submit">編集</IonButton>
+            </div>
           </div>
         </IonContent>
       </>
