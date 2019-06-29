@@ -75,6 +75,7 @@ export default class Signup extends Component<{}, State> {
       return;
     }
 
+    // ユーザー生成
     createUser(username, password, (data: any) => {
       let modalData: Data;
       if (data.user) {

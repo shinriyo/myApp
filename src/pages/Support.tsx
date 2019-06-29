@@ -14,7 +14,12 @@ import {
 } from "@ionic/react";
 
 export default class Support extends Component {
-  submit() {}
+  submit() {
+    // メール
+    alert(1);
+    return false;
+  }
+
   render() {
     return (
       <>
