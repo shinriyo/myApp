@@ -21,6 +21,8 @@ import {
 } from "@ionic/react";
 import "./Profile.css";
 import AboutPopover from "../components/AboutPopover";
+import { getCounties } from "../api/countries";
+import * as _ from "lodash";
 
 type Props = ReturnType<typeof mapStateToProps>;
 
@@ -28,6 +30,7 @@ type State = {
   showPopover: boolean;
   showPopoverEvent: null | MouseEvent;
   userData: any;
+  countries: any;
 };
 
 class Profile extends Component<Props, State> {
@@ -47,7 +50,20 @@ class Profile extends Component<Props, State> {
       showPopover: false,
       showPopoverEvent: null,
       userData,
+      countries: [],
     };
+
+    // 呼ぶ
+    getCounties((res: any)=> {
+      _.each(res.data, (country: any) => {
+        console.log(country);
+        // 日本語
+        console.log(country.translations.ja);
+        this.setState(
+          {countries: country.translations.ja}
+        );
+      });
+    });
   }
 
   presentPopover = (event: MouseEvent) => {
