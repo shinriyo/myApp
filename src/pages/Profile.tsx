@@ -26,22 +26,32 @@ type Props = ReturnType<typeof mapStateToProps>;
 type State = {
   showPopover: boolean;
   showPopoverEvent: null | MouseEvent;
+  userData: any;
 };
 
 class Profile extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
+    const userData = {
+      firstname: "太郎",
+      lastname: "山田",
+      username: "user name",
+      bloodType: "A",
+      birthDay: "1994-01-01",
+    };
+
     this.state = {
       showPopover: false,
       showPopoverEvent: null,
+      userData,
     };
   }
 
-  presentPopover = (e: MouseEvent) => {
+  presentPopover = (event: MouseEvent) => {
     this.setState(() => ({
       showPopover: true,
-      showPopoverEvent: e,
+      showPopoverEvent: event,
     }));
   };
 
@@ -84,13 +94,20 @@ class Profile extends Component<Props, State> {
           <div className="ion-padding about-info">
             <IonList lines="none">
               <IonItem>
-                <IonLabel>Name</IonLabel>
-                <IonLabel>Hoge Bar</IonLabel>
+                <IonLabel>
+                  Name: {this.state.userData.firstname} {this.state.userData.lastname}
+                </IonLabel>
+                <IonLabel>ニックネーム: {this.state.userData.username}</IonLabel>
               </IonItem>
               <IonItem>
                 <IonIcon name="calendar" slot="start" />
                 <IonLabel>Birth Day</IonLabel>
-                <IonDatetime displayFormat="MMM DD, YYYY" max="2056" value={this.props.conferenceDate} />
+                <IonDatetime
+                  readonly={true}
+                  displayFormat="MMM DD, YYYY"
+                  max="2056"
+                  value={this.state.userData.birthDay}
+                />
               </IonItem>
               <IonItem>
                 <IonIcon name="calendar" slot="start" />
