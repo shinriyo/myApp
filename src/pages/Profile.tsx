@@ -43,6 +43,7 @@ class Profile extends Component<Props, State> {
       username: "user name",
       bloodType: "A",
       birthDay: "1994-01-01",
+      location: "Japan",
       memo: "aoueo アイウエオ",
     };
 
@@ -56,10 +57,8 @@ class Profile extends Component<Props, State> {
     // 呼ぶ
     getCounties((res: any)=> {
       const countries = _.map(res.data, (country: any) => {
-        console.log(country);
-        // 日本語
-        console.log(country.translations.ja);
-        return {"name": country.translations.nam, "ja": country.translations.ja};
+        // console.log(country.name);
+        return {"name": country.name, "ja": country.translations.ja};
       });
 
       this.setState(
@@ -139,11 +138,23 @@ class Profile extends Component<Props, State> {
                 <IonIcon name="pin" slot="start" />
                 <IonLabel>Location</IonLabel>
                 <IonSelect>
-                  <IonSelectOption key={'option_0'}  value="none" selected>
+                  <IonSelectOption key={'option_0'}
+                    value="none" selected={this.state.userData.location === 'none'}
+                  >
                     選択してください
                   </IonSelectOption>
                   {_.map(this.state.countries, (country: any, index: number) => {
-                    return (<IonSelectOption key={`option_${index}`} value={country.name}>{country.ja}</IonSelectOption>);
+                    if (_.isUndefined(country) || country.ja === null) {
+                      // ない国もある
+                      return;
+                    }
+                    return (
+                    <IonSelectOption
+                      key={`option_${index}`} value={country.name}
+                      selected={true}>
+                      selected={this.state.userData.location === country.name}>
+                      {country.ja}
+                    </IonSelectOption>);
                   })}
                 </IonSelect>
               </IonItem>
