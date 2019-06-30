@@ -55,14 +55,16 @@ class Profile extends Component<Props, State> {
 
     // 呼ぶ
     getCounties((res: any)=> {
-      _.each(res.data, (country: any) => {
+      const countries = _.map(res.data, (country: any) => {
         console.log(country);
         // 日本語
         console.log(country.translations.ja);
-        this.setState(
-          {countries: country.translations.ja}
-        );
+        return {"name": country.translations.nam, "ja": country.translations.ja};
       });
+
+      this.setState(
+        {countries}
+      );
     });
   }
 
@@ -130,21 +132,24 @@ class Profile extends Component<Props, State> {
               <IonItem>
                 <IonIcon name="water" slot="start" />
                 <IonLabel>Blood Type</IonLabel>
-                <IonLabel>A</IonLabel>
+                <IonLabel>{this.state.userData.bloodType} </IonLabel>
               </IonItem>
 
               <IonItem>
                 <IonIcon name="pin" slot="start" />
                 <IonLabel>Location</IonLabel>
                 <IonSelect>
-                  <IonSelectOption value="madison" selected>
+                  {/* <IonSelectOption value="madison" selected>
                     Madison, WI
                   </IonSelectOption>
                   <IonSelectOption value="austin">Austin, TX</IonSelectOption>
                   <IonSelectOption value="chicago">Chicago, IL</IonSelectOption>
-                  <IonSelectOption value="seattle">Seattle, WA</IonSelectOption>
-                  {this.state.countries.map((country: any, index: number) => {
-                    return (<IonSelectOption value={index}>{country}</IonSelectOption>);
+                  <IonSelectOption value="seattle">Seattle, WA</IonSelectOption> */}
+                  <IonSelectOption key={'option_0'}  value="none" selected>
+                    選択してください
+                  </IonSelectOption>
+                  {_.map(this.state.countries, (country: any, index: number) => {
+                    return (<IonSelectOption key={`option_${index}`} value={country.name}>{country.ja}</IonSelectOption>);
                   })}
                   {/* <IonSelectOption value="foreigner">Foreign</IonSelectOption> */}
                 </IonSelect>
