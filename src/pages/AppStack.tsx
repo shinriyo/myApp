@@ -36,6 +36,7 @@ class AppStack extends React.Component<AppStackProps> {
 
         <IonTabs>
           <IonRouterOutlet>
+            {/* 実際に各ページへ飛ばす */}
             <Route path="/:tab(schedule)" component={SchedulePage} exact={true} />
             <Route path="/:tab(speakers)" component={SpeakerList} exact={true} />
             <Route path="/:tab(speakers)/speaker/:id" component={SpeakerDetail} />

@@ -139,19 +139,12 @@ class Profile extends Component<Props, State> {
                 <IonIcon name="pin" slot="start" />
                 <IonLabel>Location</IonLabel>
                 <IonSelect>
-                  {/* <IonSelectOption value="madison" selected>
-                    Madison, WI
-                  </IonSelectOption>
-                  <IonSelectOption value="austin">Austin, TX</IonSelectOption>
-                  <IonSelectOption value="chicago">Chicago, IL</IonSelectOption>
-                  <IonSelectOption value="seattle">Seattle, WA</IonSelectOption> */}
                   <IonSelectOption key={'option_0'}  value="none" selected>
                     選択してください
                   </IonSelectOption>
                   {_.map(this.state.countries, (country: any, index: number) => {
                     return (<IonSelectOption key={`option_${index}`} value={country.name}>{country.ja}</IonSelectOption>);
                   })}
-                  {/* <IonSelectOption value="foreigner">Foreign</IonSelectOption> */}
                 </IonSelect>
               </IonItem>
             </IonList>

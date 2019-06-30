@@ -98,6 +98,7 @@ const SpeakerItem = ({ speaker, speakerSessions, history }: ItemProps) => {
 
 type ListProps = RouteComponentProps & ReturnType<typeof mapStateToProps>;
 
+// Speakerのリストページ
 const SpeakerList = ({ speakers, sessions, history }: ListProps) => (
   <>
     <IonHeader>
