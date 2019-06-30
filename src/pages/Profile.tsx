@@ -151,7 +151,6 @@ class Profile extends Component<Props, State> {
                     return (
                     <IonSelectOption
                       key={`option_${index}`} value={country.name}
-                      selected={true}>
                       selected={this.state.userData.location === country.name}>
                       {country.ja}
                     </IonSelectOption>);
