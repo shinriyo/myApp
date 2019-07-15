@@ -57,6 +57,8 @@ class Profile extends Component<Props, State> {
       bloodType: null,
     };
 
+    this.setBloodType = this.setBloodType.bind(this);
+
     // 国を呼ぶ
     getCounties((res: any)=> {
       const countries = _.map(res.data, (country: any) => {
@@ -84,11 +86,15 @@ class Profile extends Component<Props, State> {
     }));
   };
 
-  private bloodType(event: CustomEvent) {
+  private setBloodType(event: CustomEvent) {
     event.preventDefault();
 
+    const userData = this.state.userData.bloodType;
+    const bloodType = event.detail.value;
+    userData.bloodType = bloodType;
+
     this.setState({
-      bloodType: event.detail.value,
+      userData: userData,
     });
   }
 
@@ -146,14 +152,14 @@ class Profile extends Component<Props, State> {
               </IonItem>
               <IonItem>
                 <IonIcon name="water" slot="start" />
-                <IonLabel>Blood Type</IonLabel>
-                <IonLabel>{this.state.userData.bloodType}</IonLabel>
+                <IonLabel>Blood Type:</IonLabel>
                 <IonInput
-                  onIonChange={this.bloodType}
+                  readonly
+                  onIonChange={this.setBloodType}
                   name="blood-type"
                   type="text"
                   autocapitalize="off"
-                  value={this.state.bloodType}
+                  value={this.state.userData.bloodType}
                   required
                 />
               </IonItem>
