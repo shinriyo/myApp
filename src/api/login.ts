@@ -29,13 +29,23 @@ export const getUid = () => {
   }
 };
 
+export const getUser = () => {
+  const user = firebase.auth().currentUser;
+
+  if (user) {
+    return { user };
+  } else {
+    return { uid: null };
+  }
+};
+
 // 作る
 export const createUser = (email: string, password: string, callback: any) => {
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(result => {
-      // callback(result.user);
+      callback(result);
     })
     .catch(error => {
       // Handle Errors here.
