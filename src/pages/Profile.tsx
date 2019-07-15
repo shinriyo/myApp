@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, FormEvent } from "react";
 import { connect } from "react-redux";
 import { RootState, selectors } from "../store";
 import {
@@ -18,6 +18,7 @@ import {
   IonDatetime,
   IonTitle,
   IonTextarea,
+  IonInput,
 } from "@ionic/react";
 import "./Profile.css";
 import AboutPopover from "../components/AboutPopover";
@@ -31,6 +32,7 @@ type State = {
   showPopoverEvent: null | MouseEvent;
   userData: any;
   countries: any;
+  bloodType: null | string;
 };
 
 class Profile extends Component<Props, State> {
@@ -52,9 +54,10 @@ class Profile extends Component<Props, State> {
       showPopoverEvent: null,
       userData,
       countries: [],
+      bloodType: null,
     };
 
-    // 呼ぶ
+    // 国を呼ぶ
     getCounties((res: any)=> {
       const countries = _.map(res.data, (country: any) => {
         // console.log(country.name);
@@ -80,6 +83,19 @@ class Profile extends Component<Props, State> {
       showPopoverEvent: null,
     }));
   };
+
+  private bloodType(event: CustomEvent) {
+    event.preventDefault();
+
+    this.setState({
+      bloodType: event.detail.value,
+    });
+  }
+
+  private submit() {
+    alert(1);
+    return false;
+  }
 
   render() {
     return (
@@ -131,7 +147,15 @@ class Profile extends Component<Props, State> {
               <IonItem>
                 <IonIcon name="water" slot="start" />
                 <IonLabel>Blood Type</IonLabel>
-                <IonLabel>{this.state.userData.bloodType} </IonLabel>
+                <IonLabel>{this.state.userData.bloodType}</IonLabel>
+                <IonInput
+                  onIonChange={this.bloodType}
+                  name="blood-type"
+                  type="text"
+                  autocapitalize="off"
+                  value={this.state.bloodType}
+                  required
+                />
               </IonItem>
 
               <IonItem>
@@ -160,7 +184,7 @@ class Profile extends Component<Props, State> {
             </IonList>
             <IonTextarea>自己紹介: {this.state.userData.memo}</IonTextarea>
             <div>
-              <IonButton type="submit">編集</IonButton>
+              <IonButton onClick={this.submit}>編集</IonButton>
             </div>
           </div>
         </IonContent>
