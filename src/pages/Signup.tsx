@@ -78,10 +78,11 @@ export default class Signup extends Component<{}, State> {
     // ユーザー生成
     createUser(username, password, (data: any) => {
       let modalData: Data;
+      // alert(data.user.uid);
       if (data.user) {
         modalData = {
           title: "新規作成",
-          bodyItems: [`新規作成成功しました!`],
+          bodyItems: ['新規作成成功しました!', `${data.user.uid}さん`],
         };
       } else {
         // TODO: firebase login
@@ -91,7 +92,7 @@ export default class Signup extends Component<{}, State> {
 
         modalData = {
           title: "新規失敗",
-          bodyItems: [`新規作成失敗しました!`, errorCode, errorMessage],
+          bodyItems: ['新規作成失敗しました!', errorCode, errorMessage],
         };
       }
 
@@ -130,9 +131,11 @@ export default class Signup extends Component<{}, State> {
                   value={this.state.username}
                   onIonChange={this.updateUserName}
                   name="username"
-                  type="text"
+                  // type="text"
+                  type="email"
                   required
                 />
+                <IonLabel color="warning">Email</IonLabel>
               </IonItem>
               <IonItem>
                 <IonLabel color="primary">Password</IonLabel>
@@ -143,6 +146,7 @@ export default class Signup extends Component<{}, State> {
                   type="password"
                   required
                 />
+                <IonLabel color="warning">Password should be at least 6 characters</IonLabel>
               </IonItem>
             </IonList>
             <div>
